@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 let app = express();
 var helper = require('../helpers/github.js');
 var getReposByUsername = helper.getReposByUsername;
+var save = require('../database/index.js');
+var saveRepos = save.save;
 
 
 app.use(express.static(__dirname + '/../client/dist'));
@@ -21,7 +23,8 @@ app.post('/repos', function (req, res) {
 
   getReposByUsername(username, function(error, response, body) {
     reposArray = JSON.parse(body);
-    console.log('reposArray--------------------------', reposArray);
+
+    saveRepos(reposArray);
   });
 });
 
