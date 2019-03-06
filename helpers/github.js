@@ -17,16 +17,7 @@ let getReposByUsername = (username, callback) => {
     }
   };
 
-  function callback(error, response, body) {
-    if (!error && response.statusCode === 200) {
-      var info = JSON.parse(body);
-    }
-  }
-
-  request(options, callback);
-
-
-
+  return request(options, callback);
 }
 
 module.exports.getReposByUsername = getReposByUsername;
