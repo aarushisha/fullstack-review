@@ -22,7 +22,6 @@ class App extends React.Component {
       type: 'POST',
       url: '/repos',
       data: term,
-      contentType: 'application/x-www-form-urlencoded; charset=UTF-8', //default?
     })
   }
 
