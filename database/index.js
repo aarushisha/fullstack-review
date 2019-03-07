@@ -5,12 +5,10 @@ let repoSchema = mongoose.Schema({
   ownerLogin: String,
   _id: {
     type: Number,
-    index: true,
-    unique: true
   },
   html_url: String,
   stargazers_count: Number,
-});
+}, { _id: false });
 
 let Repo = mongoose.model('Repo', repoSchema);
 
