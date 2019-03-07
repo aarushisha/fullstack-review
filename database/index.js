@@ -14,14 +14,9 @@ let save = (reposArray) => {
   // TODO: Your code here
   // This function should save a repo or repos to
   // the MongoDB
-  //reposArray -> array of objects
   for (var i = 0; i < reposArray.length; i++) {
     var newRepo = new Repo;
     var query = { _id: reposArray[i].id};
-    // newRepo.ownerLogin =  reposArray[i].owner.login;
-    // newRepo._id = reposArray[i].id;
-    // newRepo.html_url = reposArray[i].html_url;
-    // newRepo.stargazers_count = reposArray[i].stargazers_count;
     Repo.findOneAndUpdate(query, {
       stargazers_count: reposArray[i].stargazers_count,
       ownerLogin: reposArray[i].owner.login,
@@ -33,14 +28,25 @@ let save = (reposArray) => {
         console.log('saved-----------------------------', data);
       }
     })
-    // newRepo.save(function(error, newRepo) {
-    //   if (error) {
-    //     console.log('error in saving repo---------------', error);
-    //   } else {
-    //     console.log('successfully saved repo------------------------'. newRepo);
-    //   }
-    // })
   }
 }
 
+let retrieve = (callback) => {
+  // Repo.find().sort('stargazers_count', -1).limit(25).exeqFind(function(err, post) {
+  //   if(err) {
+  //     console.log('error in retrieval-------------------', err);
+  //   } else {
+  //     console.log('retrieval was successful with------------------', post);
+  //   }
+  // })
+  Repo.find({}, 'ownerLogin stargazers_count html_url', {sort: '-stargazers_count', limit: 25}, function (err, docs) {
+    if (err) {
+      console.log('error in retrieve-----------------------------', err);
+    } else {
+      console.log('retrieved these docs successfully --------------------------', docs);
+    }
+  })
+}
+
 module.exports.save = save;
+module.exports.retreive = retrieve;

@@ -5,6 +5,7 @@ var helper = require('../helpers/github.js');
 var getReposByUsername = helper.getReposByUsername;
 var save = require('../database/index.js');
 var saveRepos = save.save;
+var retrieve = save.retreive;
 
 
 app.use(express.static(__dirname + '/../client/dist'));
@@ -26,6 +27,10 @@ app.post('/repos', function (req, res) {
 app.get('/repos', function (req, res) {
   // TODO - your code here!
   // This route should send back the top 25 repos
+  retrieve(function(err, post) {
+    console.log('hiiiiiiiiiiiiiiiiiiiiiiiiiii');
+    res.send(post);
+  })
 });
 
 let port = 1128;
