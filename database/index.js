@@ -3,9 +3,7 @@ mongoose.connect('mongodb://localhost/fetcher');
 
 let repoSchema = mongoose.Schema({
   ownerLogin: String,
-  _id: {
-    type: Number,
-  },
+  _id: Number,
   html_url: String,
   stargazers_count: Number,
 }, { _id: false });
