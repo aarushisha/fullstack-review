@@ -24,6 +24,10 @@ class App extends React.Component {
       data: term,
     })
   }
+//ajax get request?
+  retrieve (top) {
+
+  }
 
   render () {
     return (<div>
