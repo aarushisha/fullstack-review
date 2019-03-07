@@ -36,6 +36,11 @@ class App extends React.Component {
     })
   }
 //ajax get request?
+ajaxSuccess(repoArray) {
+  this.setState({
+    repos: repoArray
+  });
+}
 
 handleLoad () {
   $.ajax({
@@ -44,8 +49,9 @@ handleLoad () {
     error: function(jqXHR, exception) {
       console.log("error", jqXHR, exception);
     },
-    success: function(data) {
+    success: (data) => {
       console.log("successsssssss", data);
+      this.ajaxSuccess(data);
     }
   })
 }
