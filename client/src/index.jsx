@@ -5,13 +5,21 @@ import Search from './components/Search.jsx';
 import RepoList from './components/RepoList.jsx';
 import { request } from 'http';
 
+$(document).ready(function() {
+  console.log('document loaded');
+})
+
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.handleLoad = this.handleLoad.bind(this);
     this.state = { 
       repos: []
     }
+  }
 
+  componentDidMount() {
+    window.addEventListener('load', this.handleLoad);
   }
 
   search (term) {
@@ -22,20 +30,27 @@ class App extends React.Component {
       type: 'POST',
       url: '/repos',
       data: term,
+      success: function() {
+        console.log('success!');
+      }
     })
   }
 //ajax get request?
 
-retrieve () {
+handleLoad () {
   $.ajax({
-    method: 'GET',
+    type: 'GET',
     url: '/repos',
-    data: repoArray,
-    success: function(repoArray) {
-      console.log('success!------------------------', repoArray);
+    error: function(jqXHR, exception) {
+      console.log("error", jqXHR, exception);
+    },
+    success: function(data) {
+      console.log("successsssssss", data);
     }
   })
 }
+
+
 
 
   render () {

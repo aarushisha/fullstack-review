@@ -22,9 +22,13 @@ app.post('/repos', function (req, res) {
     reposArray = JSON.parse(body);
     saveRepos(reposArray);
   });
+  res.send('success!');
 });
 
 app.get('/repos', function (req, res) {
+  console.log('from inside app.get------------------------------------------')
+  console.log('req in app.get----------------------------', req)
+  
   // TODO - your code here!
   // This route should send back the top 25 repos
   retrieve(function(err, post) {
