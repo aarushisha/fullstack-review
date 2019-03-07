@@ -38,16 +38,16 @@ class App extends React.Component {
 //ajax get request?
 ajaxSuccess(repoArray) {
   var repoNameArray = []
-  // for (var i = 0; i < repoArray.length; i++) {
-  //   var repoObj  = {};
-  //   repoObj.name = repoArray[i].repoName;
-  //   repoObj.user = repoArray[i].ownerLogin;
-  //   repoObj.url = repoArray[i].html_url;
-  //   repoObj.stargazers_count = repoArray[i].startgazers_count;
-  //   repoNameArray.push(repoObj);
-  // }
+  for (var i = 0; i < repoArray.length; i++) {
+    var repoObj  = {};
+    repoObj.name = repoArray[i].repoName;
+    repoObj.user = repoArray[i].ownerLogin;
+    repoObj.url = repoArray[i].html_url;
+    repoObj.stargazers_count = repoArray[i].startgazers_count;
+    repoNameArray.push(repoObj);
+  }
   this.setState({
-    repos: repoArray
+    repos: repoNameArray
   });
 }
 
