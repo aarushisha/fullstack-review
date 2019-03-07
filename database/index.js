@@ -34,7 +34,7 @@ let save = (reposArray) => {
 }
 
 let retrieve = (callback) => {
-  Repo.find({}, 'ownerLogin stargazers_count name html_url', {sort: '-stargazers_count', limit: 25}, callback);
+  Repo.find({}, 'ownerLogin repoName html_url stargazers_count', {sort: '-stargazers_count', limit: 25}, callback);
 }
 
 module.exports.save = save;
