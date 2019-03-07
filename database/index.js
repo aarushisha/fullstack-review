@@ -3,7 +3,7 @@ mongoose.connect('mongodb://localhost/fetcher');
 
 let repoSchema = mongoose.Schema({
   ownerLogin: String,
-  repoID: {
+  _id: {
     type: Number,
     index: true,
     unique: true
@@ -22,7 +22,7 @@ let save = (reposArray) => {
   for (var i = 0; i < reposArray.length; i++) {
     var newRepo = new Repo;
     newRepo.ownerLogin =  reposArray[i].owner.login;
-    newRepo.repoID = reposArray[i].id;
+    newRepo._id = reposArray[i].id;
     newRepo.html_url = reposArray[i].html_url;
     newRepo.stargazers_count = reposArray[i].stargazers_count;
     newRepo.save(function(error, newRepo) {
