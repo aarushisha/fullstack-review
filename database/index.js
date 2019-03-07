@@ -17,18 +17,29 @@ let save = (reposArray) => {
   //reposArray -> array of objects
   for (var i = 0; i < reposArray.length; i++) {
     var newRepo = new Repo;
-    newRepo.ownerLogin =  reposArray[i].owner.login;
-    newRepo._id = reposArray[i].id;
-    newRepo.html_url = reposArray[i].html_url;
-    newRepo.stargazers_count = reposArray[i].stargazers_count;
-    newRepo.save(function(error, newRepo) {
-      if (error) {
-        console.log('error in saving repo---------------', error);
+    var query = { _id: reposArray[i].id};
+    // newRepo.ownerLogin =  reposArray[i].owner.login;
+    // newRepo._id = reposArray[i].id;
+    // newRepo.html_url = reposArray[i].html_url;
+    // newRepo.stargazers_count = reposArray[i].stargazers_count;
+    Repo.findOneAndUpdate(query, {
+      stargazers_count: reposArray[i].stargazers_count,
+      ownerLogin: reposArray[i].owner.login,
+      html_url: reposArray[i].html_url,
+    }, { upsert: true}, function(err, data) {
+      if (err) {
+        console.log('err in findOneAndUpdate----------------------------', err);
       } else {
-        console.log('successfully saved repo------------------------'. newRepo);
+        console.log('saved-----------------------------', data);
       }
     })
-  
+    // newRepo.save(function(error, newRepo) {
+    //   if (error) {
+    //     console.log('error in saving repo---------------', error);
+    //   } else {
+    //     console.log('successfully saved repo------------------------'. newRepo);
+    //   }
+    // })
   }
 }
 

@@ -8,7 +8,6 @@ let getReposByUsername = (username, callback) => {
 
   // The options object has been provided to help you out, 
   // but you'll have to fill in the URL
-  //need to include valid User-Agent header?
   let options = {
     url: `https://api.github.com/users/${username}/repos`,
     headers: {
