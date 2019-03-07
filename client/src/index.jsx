@@ -25,9 +25,18 @@ class App extends React.Component {
     })
   }
 //ajax get request?
-  retrieve (top) {
 
-  }
+retrieve () {
+  $.ajax({
+    method: 'GET',
+    url: '/repos',
+    data: repoArray,
+    success: function(repoArray) {
+      console.log('success!------------------------', repoArray);
+    }
+  })
+}
+
 
   render () {
     return (<div>

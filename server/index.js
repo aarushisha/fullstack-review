@@ -27,9 +27,7 @@ app.post('/repos', function (req, res) {
 app.get('/repos', function (req, res) {
   // TODO - your code here!
   // This route should send back the top 25 repos
-  console.log('in app.get-------------------------------------');
   retrieve(function(err, post) {
-    console.log('hiiiiiiiiiiiiiiiiiiiiiiiiiii');
     res.send(post);
   })
 });

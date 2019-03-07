@@ -4,6 +4,7 @@ mongoose.connect('mongodb://localhost/fetcher');
 let repoSchema = mongoose.Schema({
   ownerLogin: String,
   _id: Number,
+  repoName: String,
   html_url: String,
   stargazers_count: Number,
 }, { _id: false });
@@ -20,6 +21,7 @@ let save = (reposArray) => {
     Repo.findOneAndUpdate(query, {
       stargazers_count: reposArray[i].stargazers_count,
       ownerLogin: reposArray[i].owner.login,
+      repoName: reposArray[i].name,
       html_url: reposArray[i].html_url,
     }, { upsert: true}, function(err, data) {
       if (err) {
@@ -32,20 +34,7 @@ let save = (reposArray) => {
 }
 
 let retrieve = (callback) => {
-  // Repo.find().sort('stargazers_count', -1).limit(25).exeqFind(function(err, post) {
-  //   if(err) {
-  //     console.log('error in retrieval-------------------', err);
-  //   } else {
-  //     console.log('retrieval was successful with------------------', post);
-  //   }
-  // })
-  Repo.find({}, 'ownerLogin stargazers_count html_url', {sort: '-stargazers_count', limit: 25}, function (err, docs) {
-    if (err) {
-      console.log('error in retrieve-----------------------------', err);
-    } else {
-      console.log('retrieved these docs successfully --------------------------', docs);
-    }
-  })
+  Repo.find({}, 'ownerLogin stargazers_count name html_url', {sort: '-stargazers_count', limit: 25}, callback);
 }
 
 module.exports.save = save;
