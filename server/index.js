@@ -20,9 +20,15 @@ app.post('/repos', function (req, res) {
   var username = Object.keys(req.body)[0];
   getReposByUsername(username, function(error, response, body) {
     reposArray = JSON.parse(body);
-    saveRepos(reposArray);
+    saveRepos(reposArray, function(err, data) {
+      if (err) {
+        console.log('err in findOneAndUpdate----------------------------', err);
+      } else {
+        console.log('saved-----------------------------', data);      
+      }
+    }) 
+    res.send('success!');   
   });
-  res.send('success!');
 });
 
 app.get('/repos', function (req, res) {

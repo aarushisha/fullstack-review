@@ -11,7 +11,7 @@ let repoSchema = mongoose.Schema({
 
 let Repo = mongoose.model('Repo', repoSchema);
 
-let save = (reposArray) => {
+let save = (reposArray, callback) => {
   // TODO: Your code here
   // This function should save a repo or repos to
   // the MongoDB
@@ -23,13 +23,7 @@ let save = (reposArray) => {
       ownerLogin: reposArray[i].owner.login,
       repoName: reposArray[i].name,
       html_url: reposArray[i].html_url,
-    }, { upsert: true}, function(err, data) {
-      if (err) {
-        console.log('err in findOneAndUpdate----------------------------', err);
-      } else {
-        console.log('saved-----------------------------', data);
-      }
-    })
+    }, { upsert: true}, callback)
   }
 }
 

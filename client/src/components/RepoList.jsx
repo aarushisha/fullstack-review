@@ -7,8 +7,8 @@ const RepoList = (props) => (
     <br></br>
     <div>
       {props.repos.map (el => {
-        return <div key={el.id}>
-        <a href={el.url}>{el.name}</a>
+        return <div>
+        <a key={el.id} href={el.url}>{el.name}</a>
         </div>
       })}
     </div>

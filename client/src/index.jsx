@@ -31,7 +31,7 @@ class App extends React.Component {
       url: '/repos',
       data: term,
       success: () => {
-        console.log('success!');
+        console.log('success in post! ', term);
         this.handleLoad();
       }
     })
