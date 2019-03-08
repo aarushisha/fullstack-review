@@ -8,11 +8,10 @@ const RepoList = (props) => (
     <div>
       {props.repos.map (el => {
         return <div key={el.id}>
-        <span>{el.name}</span>
+        <a href={el.url}>{el.name}</a>
         </div>
       })}
     </div>
-    {/* {JSON.stringify(props.repos)} */}
   </div>
 )
 
