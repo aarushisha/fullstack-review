@@ -30,8 +30,9 @@ class App extends React.Component {
       type: 'POST',
       url: '/repos',
       data: term,
-      success: function() {
+      success: () => {
         console.log('success!');
+        this.handleLoad();
       }
     })
   }

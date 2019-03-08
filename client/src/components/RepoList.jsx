@@ -5,7 +5,14 @@ const RepoList = (props) => (
     <h4> Repo List Component </h4>
     There are {props.repos.length} repos.
     <br></br>
-    {JSON.stringify(props.repos)}
+    <div>
+      {props.repos.map (el => {
+        return <div key={el.id}>
+        <span>{el.name}</span>
+        </div>
+      })}
+    </div>
+    {/* {JSON.stringify(props.repos)} */}
   </div>
 )
 
