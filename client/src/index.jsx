@@ -21,6 +21,7 @@ class App extends React.Component {
   componentDidMount() {
     window.addEventListener('load', this.handleLoad);
   }
+  
 
   search (term) {
     console.log(`${term} was searched`);

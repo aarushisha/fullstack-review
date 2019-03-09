@@ -8,7 +8,7 @@ const RepoList = (props) => (
     <div>
       {props.repos.map (el => {
         return <div>
-        <span>Stargazers: {el.stargazers_count} | </span><a key={el.id} href={el.url}>{el.name}</a>
+        <span>Stargazers: {el.stargazers_count} | </span><a key={el.id} href={el.url} target="_blank">{el.name}</a><span> by {el.user}</span>
         </div>
       })}
     </div>
