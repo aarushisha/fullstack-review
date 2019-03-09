@@ -44,7 +44,7 @@ ajaxSuccess(repoArray) {
     repoObj.name = repoArray[i].repoName;
     repoObj.user = repoArray[i].ownerLogin;
     repoObj.url = repoArray[i].html_url;
-    repoObj.stargazers_count = repoArray[i].startgazers_count;
+    repoObj.stargazers_count = repoArray[i].stargazers_count;
     repoNameArray.push(repoObj);
   }
   this.setState({
